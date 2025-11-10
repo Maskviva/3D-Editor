@@ -13,7 +13,7 @@
         </el-splitter-panel>
         <el-splitter-panel size="60%">
           <div ref="viewRef" class="viewRef">
-
+            <span style="z-index: 99999;">{{ fps }}</span>
           </div>
         </el-splitter-panel>
         <el-splitter-panel :collapsible="true" size="20%">
@@ -41,8 +41,10 @@ const viewRef = ref<HTMLDivElement>()
 const sidebarLeftRef = ref<HTMLDivElement>()
 const sidebarRightRef = ref<HTMLDivElement>()
 
-const sceneManager = new SceneManager()
+const sceneManager = new SceneManager(viewRef as Ref<HTMLDivElement>)
 const playerManager = new PlayerManager(sceneManager)
+
+const fps = ref('')
 
 function delayResize() {
   nextTick(() => {
@@ -51,7 +53,7 @@ function delayResize() {
 }
 
 onMounted(async () => {
-  sceneManager.init(viewRef as Ref<HTMLDivElement>)
+  sceneManager.init()
   sceneManager.setCamera(playerManager.Player.camera)
   sceneManager.pushFunction(playerManager.update.bind(playerManager))
 

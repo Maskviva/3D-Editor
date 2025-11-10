@@ -14,7 +14,8 @@ export class PlayerInputController {
         },
         mouse: {
             choose: 0,
-            lifted: 1
+            lifted: 1,
+            alt: {}
         }
     }
 
