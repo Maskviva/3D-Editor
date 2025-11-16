@@ -12,6 +12,8 @@ export class SceneBase {
 
     protected functions: Array<() => void> = [];
 
+    protected backupCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
     constructor(divRef: Ref<HTMLDivElement>) {
         this.divRef = divRef;
         this.scene = new THREE.Scene();
@@ -26,6 +28,7 @@ export class SceneBase {
             new THREE.MeshBasicMaterial({color: 0xffffff})
         );
         cube.position.set(0, 0, 5);
+        cube.userData.canChoose = true;
         this.scene.add(cube);
     }
 
@@ -48,7 +51,7 @@ export class SceneBase {
     protected renderLoop(): void {
         if (!this.life) return;
 
-        this.renderer.render(this.scene, this.camera ?? new THREE.PerspectiveCamera());
+        this.renderer.render(this.scene, this.camera ?? this.backupCamera);
         this.functions.forEach(fn => fn());
         requestAnimationFrame(this.renderLoop.bind(this));
     }

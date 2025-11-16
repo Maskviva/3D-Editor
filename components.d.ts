@@ -11,9 +11,19 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    3DView: typeof import('./src/components/3DView.vue')['default']
+    A: typeof import('./src/components/node/base/a.vue')['default']
+    BaseEdge: typeof import('./src/components/node/base/BaseEdge.vue')['default']
+    BaseHandle: typeof import('./src/components/node/base/BaseHandle.vue')['default']
+    BaseNode: typeof import('./src/components/node/base/BaseNode.vue')['default']
+    BoolNode: typeof import('./src/components/node/variable/BoolNode.vue')['default']
+    Edge: typeof import('./src/components/node/base/Edge.vue')['default']
     ElSplitter: typeof import('element-plus/es')['ElSplitter']
     ElSplitterPanel: typeof import('element-plus/es')['ElSplitterPanel']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
+    IfNode: typeof import('./src/components/node/logic/IfNode.vue')['default']
+    LogicNode: typeof import('./src/components/node/base/LogicNode.vue')['default']
+    VariableNode: typeof import('./src/components/node/base/VariableNode.vue')['default']
   }
 }

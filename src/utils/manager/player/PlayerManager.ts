@@ -12,16 +12,16 @@ export class PlayerManager {
     private readonly player: PlayerBase;
     private readonly FirstPersonCameraController: FirstPersonCameraController;
     private readonly PlayerMoveController: PlayerMoveController;
-    private readonly EventManager: EventManager;
     private readonly PlayerInputController: PlayerInputController;
+    private readonly EventManager: EventManager;
 
-    constructor(sceneManager: SceneManager) {
+    constructor(sceneManager: SceneManager, eventManager: EventManager) {
         this.sceneManager = sceneManager;
         this.player = new PlayerBase("Player", new THREE.Vector3(0, 0, 0))
         this.FirstPersonCameraController = new FirstPersonCameraController(this.player);
         this.PlayerMoveController = new PlayerMoveController(this.player);
         this.PlayerInputController = new PlayerInputController(this.sceneManager, this.PlayerMoveController, this.FirstPersonCameraController);
-        this.EventManager = new EventManager();
+        this.EventManager = eventManager;
     }
 
     public update(): void {

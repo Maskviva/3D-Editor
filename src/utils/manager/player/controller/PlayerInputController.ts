@@ -13,7 +13,7 @@ export class PlayerInputController {
             down: 'ShiftLeft'
         },
         mouse: {
-            choose: 0,
+            choose: 1,
             lifted: 1,
             alt: {}
         }
