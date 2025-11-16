@@ -35,6 +35,7 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   (e: 'handleOnDragStart', event: MouseEvent): void;
   (e: 'handleOnDragEnd', event: MouseEvent): void;
+  (e: 'nodeOnDragStart', event: { id: string }): void;
   (e: 'nodeOnDragMove', event: { id: string; x: number; y: number; }): void;
 }>();
 
@@ -79,6 +80,7 @@ const dragStart = (e: MouseEvent) => {
   window.addEventListener('mouseup', dragStop);
   e.preventDefault();
   e.stopPropagation();
+  emit('nodeOnDragStart', {id: props.id})
 };
 
 const drag = (e: MouseEvent) => {

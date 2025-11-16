@@ -8,6 +8,7 @@
 import {computed, type CSSProperties} from "vue";
 
 const props = withDefaults(defineProps<{
+  id: string;
   color?: string;
   start: { x: number, y: number };
   end: { x: number, y: number };

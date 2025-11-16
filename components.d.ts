@@ -11,8 +11,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    3DView: typeof import('./src/components/3DView.vue')['default']
-    A: typeof import('./src/components/node/base/a.vue')['default']
     BaseEdge: typeof import('./src/components/node/base/BaseEdge.vue')['default']
     BaseHandle: typeof import('./src/components/node/base/BaseHandle.vue')['default']
     BaseNode: typeof import('./src/components/node/base/BaseNode.vue')['default']

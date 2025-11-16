@@ -11,12 +11,14 @@
 
                @handleOnDragEnd="handleOnDragEnd"
                @handleOnDragStart="handleOnDragStart"
-               @nodeOnDragMove="nodeCanvasStore.handleNodeMove"
+               @nodeOnDragStart="nodeCanvasStore.nodeStart"
+               @nodeOnDragMove="nodeCanvasStore.nodeMove"
     />
 
     <component :is="edge.component"
                v-for="edge in nodeCanvasStore.edges"
                :key="edge.id"
+               :id="edge.id"
                :end="edge.end"
                :start="edge.start"
                color="#000"
@@ -98,7 +100,7 @@ const handleOnDragStart = (e: MouseEvent) => {
     start: {x: e.clientX, y: e.clientY},
     end: {x: e.clientX, y: e.clientY},
     from: edgeFromId,
-    to: '2',
+    to: '',
     color: '#000'
   })
 
@@ -128,6 +130,12 @@ onMounted(() => {
     id: Date.now().toString() + Math.random() + '-node',
     component: markRaw(BaseNode),
     color: '#000000',
+    scale: 1,
+    offset: {x: 0, y: 0}
+  }, {
+    id: Date.now().toString() + Math.random() + '-node',
+    component: markRaw(BaseNode),
+    color: '#486544',
     scale: 1,
     offset: {x: 0, y: 0}
   })

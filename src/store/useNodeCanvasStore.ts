@@ -73,7 +73,18 @@ export const useNodeCanvasStore = defineStore('nodeCanvas', () => {
         canvasDom.value!.removeEventListener('mouseup', handleMouseUp);
     };
 
-    const handleNodeMove = (e: { id: string; x: number; y: number; }) => {
+    const nodeStart = (e: { id: string }) => {
+        const node = nodes.value.find(i => i.id == e.id);
+
+        if (node) {
+            nodes.value.forEach(node => {
+                node.inChoose = false;
+            });
+            node.inChoose = true;
+        }
+    }
+
+    const nodeMove = (e: { id: string; x: number; y: number; }) => {
         const node = nodes.value.find(i => i.id == e.id);
 
         if (node) {
@@ -163,6 +174,7 @@ export const useNodeCanvasStore = defineStore('nodeCanvas', () => {
         canvasOffset: readonly(canvasOffset),
         setCanvasDom,
         cleanup,
-        handleNodeMove,
+        nodeStart,
+        nodeMove,
     };
 });
